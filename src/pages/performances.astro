@@ -1,22 +1,13 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Performance from "../components/Performance.astro";
+const allPosts = await Astro.glob('./performances/*.md');
+const pageTitle = "Performances";
 ---
-
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width" />
-  <meta name="generator" content={Astro.generator} />
-  <title>Astro</title>
-</head>
-<body>
-<h1>Upcoming Performances</h1>
-<h4>October</h4>
-<ul>
-  <li><a href="/performances/2024-10-07">October 7th, 2024</a></li>
-  <li><a href="/performances/2024-10-14">October 14th, 2024</a></li>
-  <li><a href="/performances/2024-11-02">November 2nd, 2024</a></li>
-</ul>
-</body>
-</html>
+<BaseLayout pageTitle={pageTitle}>
+  <h1>Upcoming Performances</h1>
+  <h4>October</h4>
+  <ul>
+    {allPosts.map((post) => <Performance post={post} />)}
+  </ul>
+</BaseLayout>
